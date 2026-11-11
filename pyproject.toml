@@ -1,0 +1,17 @@
+[project]
+name = "we-demo"
+version = "0.1.0"
+description = "This is a demo project of a tool for recording weight."
+readme = "README.md"
+authors = [
+    { name = "dustywoods", email = "dustywoods.zhou@qq.com" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+we = "we_demo:main"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
