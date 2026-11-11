@@ -1,2 +1,4 @@
+from .presentation.parser import get_args
+
 def main() -> None:
-    print("Hello from we-demo!")
+    args = get_args()
