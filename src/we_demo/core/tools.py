@@ -43,3 +43,26 @@ def render(records: list[WeightRecord], days = 30):
     print()
     print(f"Compared with the previous record, change: {change:.1f} kg")
     print()
+
+def confirm_clean(times: int = 3):
+    cancelled = False
+
+    for _ in range(times):
+        answer = input("Are you sure you want to clear all weight records? [y/N]").strip().lower()
+
+        if answer in ('', 'y', 'yes'):
+            return True
+        elif answer in ('n', 'no'):
+            cancelled = True
+            break
+
+        print("Please enter 'y' or 'n'")
+
+    if cancelled:
+        print("Operation cancelled.")
+    else:
+        print("Too many invalid inputs. Operation cancelled.")
+
+    return False
+
+

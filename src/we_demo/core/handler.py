@@ -3,7 +3,7 @@ from datetime import date, timedelta
 
 from ..infrastructure.database import WeightRecord, Database
 from .validation import validate_weight
-from .tools import render
+from .tools import render, confirm_clean
 
 class Handler:
 
@@ -33,4 +33,7 @@ class Handler:
         render(records, default_len)
 
     def _handle_clean(self, args):
-        pass
+        if not args.force and not confirm_clean(): return
+        with self.database:
+            self.database.clean()
+        print("All records deleted")
