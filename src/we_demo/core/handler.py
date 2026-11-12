@@ -1,8 +1,9 @@
 import argparse
-from datetime import date
+from datetime import date, timedelta
 
 from ..infrastructure.database import WeightRecord, Database
 from .validation import validate_weight
+from .tools import render
 
 class Handler:
 
@@ -23,10 +24,13 @@ class Handler:
         day =  date.today()
         with self.database:
             self.database.add(WeightRecord(day, weight))
-            
 
     def _handle_show(self, args):
-        pass
+        default_len = 30
+        end = date.today()
+        start = end - timedelta(days=default_len-1)
+        records = self.database.get_range(start, end)
+        render(records, default_len)
 
     def _handle_clean(self, args):
         pass
